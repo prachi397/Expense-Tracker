@@ -1,0 +1,68 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFFFFFC4;
+}
+
+.custom-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background: #EFEFEFD9;
+}
+
+.custom-modal h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+.popup-main{
+  display: flex;
+  gap: 10px;
+}
+
+.modal-content {
+  color: #D9D9D9;
+}
+.modal-content input{
+  box-shadow: 0px 4px 4px 0px #00000040;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-btn {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-submit-btn {
+  background-color: #F4BB4A;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.modal-cancel-btn {
+  background: linear-gradient(0deg, #D9D9D9, #D9D9D9),
+    linear-gradient(0deg, #D9D9D9, #D9D9D9),
+    linear-gradient(0deg, #E3E3E3, #E3E3E3);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border: none;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

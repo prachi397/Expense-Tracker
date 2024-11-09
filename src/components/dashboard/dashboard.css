@@ -1,0 +1,111 @@
+.expense-logo {
+    margin-left: 10px;
+}
+
+.main-container {
+    margin: 10px;
+    background: #3B3B3B;
+    width: 98%;
+    height: 90vh;
+    color: #FFFFFF;
+}
+
+.main-container h1 {
+    margin: 10px;
+}
+
+.activities {
+    margin: 10px;
+    display: flex;
+    gap: 6rem;
+    background: #626262;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-radius: 10px;
+    padding: 45px;
+    height: 150px;
+}
+
+.income-container, .expense-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 15px;
+    background: #9B9B9B;
+    width: 280px;
+    height: 140px;
+    font-size: 22px;
+}
+.income-container .balance-amount{
+    color: #89E148;
+    font-weight: 600;
+}
+.expense-container .expenses{
+    color: orange;
+    font-weight: 600;
+}
+.addIncome-btn{
+    background: linear-gradient(90deg, #B5DC52 0%, #89E148 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    padding: 8px 20px 8px 20px;
+}
+.addExpense-btn{
+    background: linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    padding: 8px 20px 8px 20px;
+}
+
+  /* For tablets */
+  @media (max-width: 1024px) and (min-width: 768px) {
+    .activities {
+        flex-direction: row;
+        gap: 2rem;
+        padding: 40px;
+    }
+    .income-container, .expense-container, .expense-chart {
+        width: 180px;
+        height: 120px;
+        font-size: 18px;
+    }
+  }
+  
+  /* For mobile devices */
+  @media (max-width: 768px) {
+    .activities {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 15px;
+        align-items: center;
+        height: 400px;
+    }
+    .income-container, .expense-container{
+        width: 100%;
+        height: auto;
+        font-size: 16px;
+        padding: 10px 0 10px 0;
+    }
+    .expense-chart{
+        margin-top: 1rem;
+    }
+    .main-container {
+        padding: 10px;
+    }
+  }
+  
+.recharts-wrapper{
+    bottom: 9rem !important;
+}
+.recharts-legend-wrapper{
+    bottom: 5rem !important;
+}
+.second-conatiner{
+    display: flex;
+    gap: 20px;
+}
