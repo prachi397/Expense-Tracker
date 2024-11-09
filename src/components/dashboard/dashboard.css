@@ -105,6 +105,15 @@
 .recharts-legend-wrapper{
     bottom: 5rem !important;
 }
+.input-cont{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+.input-cont input{
+    margin-bottom: 15px;
+}
 .second-conatiner{
     display: flex;
     gap: 20px;

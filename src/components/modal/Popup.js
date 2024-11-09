@@ -19,7 +19,7 @@ const Popup = ({
       overlayClassName="modal-overlay"
     >
       <h2>{title}</h2>
-      <div className="popup-main">
+      <div className={submitText==='Add Balance' ? 'popup-main':''}>
       <div className="modal-content">{children}</div>
       <div className="modal-btn">
         <button className="modal-submit-btn" onClick={onSubmit}>

@@ -5,34 +5,43 @@ import ExpenseChart from "../chart/ExpenseChart";
 import Popup from "../modal/Popup";
 
 const Dashboard = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [balance, setBalance] = useState(0);
-    const [incomeAmount, setIncomeAmount] = useState('');
+  const [isBalanceModalOpen, setIsBalanceModalOpen] = useState(false);
+  const [isExpenseModalOpen, setIsExpenseModalOpen] = useState(false);
+  const [balance, setBalance] = useState(0);
+  const [incomeAmount, setIncomeAmount] = useState("");
 
-    //function to set the income amount
-    const handleIncomeAmount = (e) =>{
-        setIncomeAmount(e.target.value)
-    }
+  //function to set the income amount
+  const handleIncomeAmount = (e) => {
+    setIncomeAmount(e.target.value);
+  };
 
   //function to open pop up upon clicking add income
   const handleAddIncome = () => {
-    setIsModalOpen(true);
+    setIsBalanceModalOpen(true);
   };
 
   // function to add balance while clicking on add income button inside popup
-  const handleAddBalance = () =>{
-    setBalance(balance+parseInt(incomeAmount));
-    handleCloseModal();
-    setIncomeAmount('');
-  }
+  const handleAddBalance = () => {
+    setBalance(balance + parseInt(incomeAmount));
+    handleCloseBalanceModal();
+    setIncomeAmount("");
+  };
 
-  // function to close the popup
-  const handleCloseModal = () =>{
-    setIsModalOpen(false);
-  }
+  // function to close the popup for balance
+  const handleCloseBalanceModal = () => {
+    setIsBalanceModalOpen(false);
+  };
 
-  //function to add expenses
-  const handleAddExpenses = () => {};
+  //function to open expense modal
+  const handleAddExpenses = () => {
+    setIsExpenseModalOpen(true);
+  };
+
+  // function to close the popup for expense
+  const handleExpenseCloseModal = () => {
+    setIsExpenseModalOpen(false);
+  };
+
   return (
     <div>
       {/* logo for expense tracker */}
@@ -69,14 +78,60 @@ const Dashboard = () => {
 
         {/* add income modal */}
         <Popup
-        isOpen={isModalOpen}
-        onSubmit={handleAddBalance}
-        onClose={handleCloseModal}
-        title="Add Balance"
-        submitText="Add Balance"
-        cancelText="Cancel"
+          isOpen={isBalanceModalOpen}
+          onSubmit={handleAddBalance}
+          onClose={handleCloseBalanceModal}
+          title="Add Balance"
+          submitText="Add Balance"
+          cancelText="Cancel"
         >
-            <input type="number" placeholder="Income Amount" value={incomeAmount} onChange={handleIncomeAmount}/>
+          <input
+            type="text"
+            placeholder="Income Amount"
+            value={incomeAmount}
+            onChange={handleIncomeAmount}
+          />
+        </Popup>
+
+        {/* add expense modal */}
+        <Popup
+          isOpen={isExpenseModalOpen}
+          //   onSubmit={handleAddBalance}
+          onClose={handleExpenseCloseModal}
+          title="Add Expenses"
+          submitText="Add Expense"
+          cancelText="Cancel"
+        >
+          <div className="input-cont">
+            <div>
+              <input
+                type="text"
+                placeholder="Title"
+                value={incomeAmount}
+                onChange={handleIncomeAmount}
+              />
+              <input
+                type="text"
+                placeholder="Select Category"
+                value={incomeAmount}
+                onChange={handleIncomeAmount}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Price"
+                value={incomeAmount}
+                onChange={handleIncomeAmount}
+              />
+              <input
+                type="date"
+                placeholder="dd/mm/yyyy"
+                value={incomeAmount}
+                onChange={handleIncomeAmount}
+              />
+            </div>
+          </div>
         </Popup>
         {/* second conatiner */}
         <div className="second-conatiner">
