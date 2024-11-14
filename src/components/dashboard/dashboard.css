@@ -122,3 +122,18 @@
     width: 50%;
     margin: 10px;
 }
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    .recent-transaction,.top-expenses{
+        width: 93%;
+    }
+}
+
+@media (max-width: 768px) {
+    .second-conatiner{
+        flex-direction: column;
+    }
+    .recent-transaction,.top-expenses{
+        width: 93%;
+    }
+}

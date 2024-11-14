@@ -26,15 +26,36 @@ const Dashboard = () => {
   //empty array to store object of expense details
   const [expenseDetails, setExpenseDetails] = useState([]);
 
-  //save balance to local storage whenever balance gets update
+  // Save balance and expense details to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem("balance", JSON.stringify(balance));
-  }, [balance]);
+    console.log("Saving to localStorage", { balance, expenseDetails });
 
-  //save expense details to local storage whenever expense deatils gets update
+    localStorage.setItem("balance", JSON.stringify(balance));
+
+    // Only save if expenseDetails has items, otherwise it will save an empty array
+    if (expenseDetails.length > 0) {
+      localStorage.setItem("expenseDetails", JSON.stringify(expenseDetails));
+    }
+  }, [balance, expenseDetails]);
+
+  // Load data from localStorage
   useEffect(() => {
-    localStorage.setItem("expenseDetails", JSON.stringify(expenseDetails));
-  }, [expenseDetails]);
+    const storedBalance = localStorage.getItem("balance");
+    const storedExpenseDetails = localStorage.getItem("expenseDetails");
+
+    if (storedBalance) {
+      setBalance(JSON.parse(storedBalance));
+    }
+
+    if (storedExpenseDetails) {
+      setExpenseDetails(JSON.parse(storedExpenseDetails));
+      const totalExpense = expenseDetails.reduce(
+        (sum, expense) => sum + parseInt(expense.expensePrice),
+        0
+      );
+      setShowExpensePrice(totalExpense);
+    }
+  }, []);
 
   //function to set the income amount
   const handleIncomeAmount = (e) => {
@@ -94,7 +115,9 @@ const Dashboard = () => {
     e.preventDefault();
     // Check if the expense price exceeds the available balance
     if (parseInt(expensePrice) > balance) {
-      enqueueSnackbar("Insufficient balance to add this expense!", { variant: "error" });
+      enqueueSnackbar("Insufficient balance to add this expense!", {
+        variant: "error",
+      });
       return;
     }
     let expenseData = {
@@ -121,7 +144,7 @@ const Dashboard = () => {
   const handleDelete = (expense) => {
     // Implement delete functionality
   };
-  
+
   const handleEdit = (expense) => {
     // Implement edit functionality
   };
@@ -156,7 +179,7 @@ const Dashboard = () => {
           </div>
           {/* pi chart to show the expense details*/}
           <div className="expense-chart">
-            <ExpenseChart />
+            <ExpenseChart expenseDetails={expenseDetails} />
           </div>
         </div>
 
@@ -228,15 +251,15 @@ const Dashboard = () => {
           <div className="recent-transaction">
             <h2>Recent Transactions</h2>
             {/* table to show expense details */}
-            <ExpenseTable 
-            expenseDetails={expenseDetails}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
+            <ExpenseTable
+              expenseDetails={expenseDetails}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
             />
           </div>
           <div className="top-expenses">
             <h2>Top Expenses</h2>
-            <ExpenseBarChart expenseDetails={expenseDetails}/>
+            <ExpenseBarChart expenseDetails={expenseDetails} />
           </div>
         </div>
       </div>

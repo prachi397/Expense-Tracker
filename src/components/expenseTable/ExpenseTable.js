@@ -5,7 +5,7 @@ import { FaPizzaSlice, FaGift, FaSuitcaseRolling, FaTimes, FaPencilAlt} from "re
 const ExpenseTable = ({ expenseDetails, onEdit, onDelete }) => {
   return (
       <div className="expense-table">
-        {expenseDetails.map((expense, index) => (
+        {expenseDetails.length>0 ? expenseDetails.map((expense, index) => (
           <div key={index} className="expense-row">
             <div className="expense-icon">
               {/* Icon based on category */}
@@ -25,7 +25,8 @@ const ExpenseTable = ({ expenseDetails, onEdit, onDelete }) => {
             <button onClick={() => onEdit(index)} className="edit-btn"><FaPencilAlt/></button>
           </div>
           </div>
-        ))}
+        )):
+        <h3 className="expenseTable-msg">No expense found</h3>}
       </div>
   );
 };
