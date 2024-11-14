@@ -1,0 +1,22 @@
+.expense-chart-container {
+  background: #FFFFFF;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expense-chart-container .recharts-wrapper {
+  position: static !important;
+  overflow: hidden; 
+}
+.recharts-cartesian-axis-line{
+  display: none;
+}
+.recharts-cartesian-axis-tick-line{
+  display: none;
+}
+.recharts-bar-rectangle{
+  border-radius: 0 20px 20px 0;
+}

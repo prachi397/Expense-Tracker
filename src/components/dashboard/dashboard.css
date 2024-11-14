@@ -118,7 +118,7 @@
     display: flex;
     gap: 20px;
 }
-.recent-transaction{
+.recent-transaction, .top-expenses{
     width: 50%;
     margin: 10px;
 }

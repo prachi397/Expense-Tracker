@@ -236,7 +236,7 @@ const Dashboard = () => {
           </div>
           <div className="top-expenses">
             <h2>Top Expenses</h2>
-            <ExpenseBarChart/>
+            <ExpenseBarChart expenseDetails={expenseDetails}/>
           </div>
         </div>
       </div>
