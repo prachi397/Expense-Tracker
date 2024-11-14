@@ -6,7 +6,7 @@
     margin: 10px;
     background: #3B3B3B;
     width: 98%;
-    height: 90vh;
+    height: 100%;
     color: #FFFFFF;
 }
 
@@ -108,7 +108,7 @@
 .input-cont{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 10px;
 }
 .input-cont input{
@@ -117,4 +117,8 @@
 .second-conatiner{
     display: flex;
     gap: 20px;
+}
+.recent-transaction{
+    width: 50%;
+    margin: 10px;
 }
