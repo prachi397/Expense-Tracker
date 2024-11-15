@@ -44,7 +44,13 @@ const ExpenseTable = ({ expenseDetails, onEdit, onDelete }) => {
             </div>
             <div className="expense-info">
               <h3>{expense.expenseTitle}</h3>
-              <p>{new Date(expense.expenseDate).toLocaleDateString()}</p>
+              <p>
+                {new Date(expense.expenseDate).toLocaleDateString("en-US", {
+                  month: "long", 
+                  day: "numeric", 
+                  year: "numeric", 
+                })}
+              </p>
             </div>
             <div className="expenseAmount">₹{expense.expensePrice}</div>
             <div className="expense-actions">
@@ -70,24 +76,25 @@ const ExpenseTable = ({ expenseDetails, onEdit, onDelete }) => {
       )}
 
       {/* Pagination Controls */}
-      {expenseDetails.length && 
-       <div className="pagination">
-       <button
-         onClick={() => handlePageChange(currentPage - 1)}
-         disabled={currentPage === 1}
-         className="pagination-btn"
-       >
-         <FaArrowAltCircleLeft style={{ fontSize: "20px" }} />
-       </button>
-       <button className="page-info">{currentPage}</button>
-       <button
-         onClick={() => handlePageChange(currentPage + 1)}
-         disabled={currentPage === totalPages}
-         className="pagination-btn"
-       >
-         <FaArrowAltCircleRight style={{ fontSize: "20px" }} />
-       </button>
-     </div>}
+      {expenseDetails.length && (
+        <div className="pagination">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="pagination-btn"
+          >
+            <FaArrowAltCircleLeft style={{ fontSize: "20px" }} />
+          </button>
+          <button className="page-info">{currentPage}</button>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="pagination-btn"
+          >
+            <FaArrowAltCircleRight style={{ fontSize: "20px" }} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
