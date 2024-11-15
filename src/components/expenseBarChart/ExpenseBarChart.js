@@ -19,7 +19,7 @@ const ExpenseBarChart = ({expenseDetails}) => {
            <Bar dataKey="expensePrice" fill="#8784D2" radius={[0, 20, 20, 0]} />
          </BarChart>
        </ResponsiveContainer>:
-       <h3 className="expenseTable-msg">No expense found</h3>}
+       <h3 className="expenseBarChart-msg">No expense found</h3>}
     </div>
   );
 };

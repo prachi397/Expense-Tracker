@@ -25,6 +25,7 @@ const Dashboard = () => {
 
   //empty array to store object of expense details
   const [expenseDetails, setExpenseDetails] = useState([]);
+  const [editIndex, setEditIndex] = useState(null); 
 
   // Save balance and expense details to localStorage whenever they change
   useEffect(() => {
@@ -46,15 +47,17 @@ const Dashboard = () => {
     if (storedBalance) {
       setBalance(JSON.parse(storedBalance));
     }
-
     if (storedExpenseDetails) {
-      setExpenseDetails(JSON.parse(storedExpenseDetails));
-      const totalExpense = expenseDetails.reduce(
-        (sum, expense) => sum + parseInt(expense.expensePrice),
+      const parsedExpenseDetails = JSON.parse(storedExpenseDetails);
+      setExpenseDetails(parsedExpenseDetails);
+    
+      // Calculate total expense 
+      const totalExpense = parsedExpenseDetails.reduce(
+        (sum, expense) => sum + parseInt(expense.expensePrice, 10),
         0
       );
       setShowExpensePrice(totalExpense);
-    }
+    }  
   }, []);
 
   //function to set the income amount
@@ -113,40 +116,55 @@ const Dashboard = () => {
   //function to add expense after entering the details
   const handleAddExpenseDetails = (e) => {
     e.preventDefault();
-    // Check if the expense price exceeds the available balance
     if (parseInt(expensePrice) > balance) {
-      enqueueSnackbar("Insufficient balance to add this expense!", {
-        variant: "error",
-      });
+      enqueueSnackbar("Insufficient balance to add this expense!", { variant: "error" });
       return;
     }
-    let expenseData = {
-      expenseTitle,
-      expensePrice,
-      selectedCategory,
-      expenseDate,
-    };
+    const expenseData = { expenseTitle, expensePrice, selectedCategory, expenseDate };
     setExpenseDetails((prevExpenseDetails) => {
-      const newExpenseDetails = [...prevExpenseDetails, expenseData];
+      let newExpenseDetails;
+      if (editIndex !== null) {
+        newExpenseDetails = [...prevExpenseDetails];
+        newExpenseDetails[editIndex] = expenseData;
+      } else {
+        newExpenseDetails = [...prevExpenseDetails, expenseData];
+      }
       const totalExpense = newExpenseDetails.reduce(
-        (sum, expense) => sum + parseInt(expense.expensePrice),
+        (sum, expense) => sum + parseInt(expense.expensePrice, 10),
         0
       );
       setShowExpensePrice(totalExpense);
       return newExpenseDetails;
     });
+    setIsExpenseModalOpen(false);
     setExpenseTitle("");
     setExpensePrice("");
     setSelectedCategory("");
     setExpenseDate("");
+    setEditIndex(null); 
   };
-
-  const handleDelete = (expense) => {
+  
+  const handleDelete = (index) => {
     // Implement delete functionality
+    setExpenseDetails((prevExpenseDetails) => {
+      const updatedExpenses = prevExpenseDetails.filter((_, i) => i !== index);
+      const totalExpense = updatedExpenses.reduce(
+        (sum, expense) => sum + parseInt(expense.expensePrice, 10),
+        0
+      );
+      setShowExpensePrice(totalExpense);
+      return updatedExpenses;
+    });
   };
 
-  const handleEdit = (expense) => {
-    // Implement edit functionality
+  const handleEdit = (index) => {
+    const expense = expenseDetails[index];
+    setExpenseTitle(expense.expenseTitle);
+    setExpensePrice(expense.expensePrice);
+    setSelectedCategory(expense.selectedCategory);
+    setExpenseDate(expense.expenseDate);
+    setEditIndex(index);
+    setIsExpenseModalOpen(true);
   };
 
   return (

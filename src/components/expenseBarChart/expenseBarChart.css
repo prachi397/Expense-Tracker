@@ -1,11 +1,7 @@
 .expense-chart-container {
-  max-height: 222px;
+  /* max-height: 222px; */
   background: #FFFFFF;
   border-radius: 15px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .expense-chart-container .recharts-wrapper {
@@ -20,4 +16,9 @@
 }
 .recharts-bar-rectangle{
   border-radius: 0 20px 20px 0;
+}
+.expenseBarChart-msg{
+  color: black;
+  text-align: center;
+  padding: 28px;
 }
