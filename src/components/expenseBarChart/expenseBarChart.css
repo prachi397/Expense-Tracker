@@ -1,7 +1,10 @@
 .expense-chart-container {
-  /* max-height: 222px; */
+  height: 239px;
   background: #FFFFFF;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .expense-chart-container .recharts-wrapper {

@@ -2,15 +2,19 @@
     width: 100%;
     background: #FFFFFF;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 10px;
+    height: 220px;
 }
 
 .expense-row {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 7px;
     border-bottom: 1px solid #9B9B9B;
-    margin: 10px;
+    margin: 5px;
 }
 
 .expense-icon {
@@ -65,4 +69,23 @@
 .expenseTable-msg {
     color: black;
     text-align: center;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+}
+
+.pagination-btn {
+    border: none;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.page-info {
+    border: none;
+    background: #43967B;
+    color: white;
 }
