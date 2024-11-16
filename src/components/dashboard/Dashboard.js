@@ -91,6 +91,7 @@ const Dashboard = () => {
   // function to close the popup for expense
   const handleExpenseCloseModal = () => {
     setIsExpenseModalOpen(false);
+    setEditIndex(null);
   };
 
   // function for when an category is selected
@@ -191,7 +192,7 @@ const Dashboard = () => {
               <span class="balance-amount">₹{balance}</span>
             </span>
             <button className="addIncome-btn" onClick={handleAddIncome}>
-              +Add Income
+              + Add Income
             </button>
           </div>
           {/* container to add expense */}
@@ -201,7 +202,7 @@ const Dashboard = () => {
               <span className="expenses">₹{expenseShowPrice}</span>
             </span>
             <button className="addExpense-btn" onClick={handleAddExpenses}>
-              +Add Expense
+              + Add Expense
             </button>
           </div>
           {/* pi chart to show the expense details*/}
@@ -233,8 +234,8 @@ const Dashboard = () => {
           isOpen={isExpenseModalOpen}
           onClose={handleExpenseCloseModal}
           onSubmit={handleAddExpenseDetails}
-          title="Add Expenses"
-          submitText="Add Expense"
+          title={editIndex===null?"Add Expense":"Edit Expense"}
+          submitText={editIndex===null?"Add Expense":"Edit Expense"}
           cancelText="Cancel"
         >
           <div className="input-cont">
